@@ -4,12 +4,28 @@ A streamlined automation script tailored for Red Team operations and specialized
 
 ## Core Features
 
+- **Runtime Prompt Setup:** Prompts dynamically for target interfaces and delivery ports upon startup.
+- **Verbose Error Inspection:** Automatically parses and spits out raw web target stack traces, custom error templates, or 500 error blocks straight to your interactive session if an exploitation payload fails.
 - **Raw Request Blueprinting:** Parses explicit `.req` configurations natively (headers, session contexts, cookies, and tokens).
 - **Automated Directory Mirroring:** Preserves exact original absolute system layouts locally inside a structured directory named `./loot_output/`.
 - **Integrated Debug Proxy Engine:** Seamless validation pipeline tracking using upstream configurations (`Burp Suite`, `ZAP`).
-- **Dynamic Handshake Loops:** Houses concurrent multi-threaded execution patterns managing dynamic DTD delivery and tracking payloads concurrently.
 
 ## Configuration & Usage
+
+## New Feature: Wordlist / Dictionary Mode
+
+You can now automate the exfiltration of large structural footprints. Instead of typing files individually, you can hand the tool a local text file filled with target operating system layouts.
+
+### Setting Up a Target Dictionary (`common_files.txt`)
+Create a local wordlist file containing standard interesting files:
+```text
+/etc/passwd
+/etc/hosts
+/etc/nginx/nginx.conf
+/var/www/html/.env
+/var/www/html/config.php
+```
+
 
 ### 1. Isolate Injection Points (`target.req`)
 Export or craft your raw HTTP request block inside a localized template named `target.req`. Insert the marker sequence `*XXE*` where the injection profile needs to take root:
@@ -25,16 +41,11 @@ Content-Type: application/xml
 *XXE*
 ```
 
-### 2. Setup Variables
-Open `xxe_harness.py` and calibrate your operational network flags:
-- Set `ATTACKER_IP` to your accessible interface address (e.g., your HTB `tun0` interface).
-- Toggle `USE_PROXY = True` to intercept and analyze script outputs within your active proxy suite on port `8080`.
-
-### 3. Run
+### 2. Run
 Execute the harness environment directly:
 
 ```bash
 python3 xxe_harness.py
 ```
 
-Type any desired absolute path when prompted (e.g., `/etc/apache2/apache2.conf` or `/etc/passwd`). The decoded data will be waiting systematically inside your local directory structure.
+Provide your parameters at the startup prompts, then specify your files (e.g., `/etc/passwd`). The script will write results cleanly or dump server-side execution failures natively into the current terminal session.
