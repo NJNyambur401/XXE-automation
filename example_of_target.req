@@ -1,0 +1,21 @@
+POST /product/stock HTTP/2
+Host: 0ae6003d03250545809fbc26000900c8.web-security-academy.net
+Cookie: session=DMsmn2EWGHQQxTm2awlHS7oqOSIdmrqR
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: https://0ae6003d03250545809fbc26000900c8.web-security-academy.net/product?productId=6
+Content-Type: application/xml
+Content-Length: 107
+Origin: https://0ae6003d03250545809fbc26000900c8.web-security-academy.net
+Dnt: 1
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+Priority: u=0
+Te: trailers
+
+<?xml version="1.0" encoding="UTF-8"?>
+*XXE*
+<stockCheck><productId>6</productId><storeId>1</storeId></stockCheck>
